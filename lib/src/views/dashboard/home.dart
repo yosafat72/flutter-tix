@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/res/app_context_extension.dart';
 import 'package:flutter_movie/src/routes/route.dart';
+import 'package:flutter_movie/src/utils/shared.preferences.util.dart';
 import 'package:flutter_movie/src/views/widgets/banner.promo.dart';
 
 class HomeView extends StatefulWidget {
@@ -11,7 +12,26 @@ class HomeView extends StatefulWidget {
 }
 
 class HomeScreen extends State<HomeView> {
+  var locationTheater = "";
   int selectedBottomBarIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getLocationTheater();
+  }
+
+  getLocationTheater() async {
+    String location =
+        await SharedPreferencesUtils.getStoredValue('locationTheater');
+    setState(() {
+      if (location == "") {
+        locationTheater = 'JAWA BARAT';
+      } else {
+        locationTheater = location;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +73,7 @@ class HomeScreen extends State<HomeView> {
                 ),
               ),
               const SizedBox(width: 5.0),
-              Text("KARAWANG",
+              Text(locationTheater,
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                     color: context.resources.color.primaryColor,
