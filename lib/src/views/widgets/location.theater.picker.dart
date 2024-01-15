@@ -11,6 +11,8 @@ class LocationTheaterPicker extends StatefulWidget {
 }
 
 class LocationTheaterPickerWidget extends State<LocationTheaterPicker> {
+  var locations = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
