@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/res/app_context_extension.dart';
+import 'package:flutter_movie/src/models/province.dart';
 import 'package:flutter_movie/src/routes/route.dart';
 import 'package:flutter_movie/src/utils/shared.preferences.util.dart';
 import 'package:flutter_movie/src/views/widgets/banner.promo.dart';
@@ -25,10 +28,12 @@ class HomeScreen extends State<HomeView> {
     String location =
         await SharedPreferencesUtils.getStoredValue('locationTheater');
     setState(() {
-      if (location == "") {
+      Map<String, dynamic> jsonData = json.decode(location);
+      final newLocation = ProvinceData.fromJson(jsonData);
+      if (newLocation.name == "") {
         locationTheater = 'JAWA BARAT';
       } else {
-        locationTheater = location;
+        locationTheater = newLocation.name ?? "";
       }
     });
   }

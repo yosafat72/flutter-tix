@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/res/app_context_extension.dart';
 import 'package:flutter_movie/src/models/province.dart';
 import 'package:flutter_movie/src/routes/route.dart';
 import 'package:flutter_movie/src/service/response/status.dart';
+import 'package:flutter_movie/src/utils/shared.preferences.util.dart';
 import 'package:flutter_movie/src/viewmodels/province.viewmodel.dart';
 import 'package:flutter_movie/src/views/widgets/appbar.with.back.button.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +36,10 @@ class LocationTheaterPickerWidget extends State<LocationTheaterPicker> {
     super.initState();
   }
 
+  saveValue(ProvinceData item) async {
+    await SharedPreferencesUtils.saveValue('locationTheater', jsonEncode(item));
+  }
+
   Widget observeProvince() {
     return ChangeNotifierProvider(
       create: (context) => viewModel,
@@ -59,7 +66,14 @@ class LocationTheaterPickerWidget extends State<LocationTheaterPicker> {
           scrollDirection: Axis.vertical,
           itemCount: items!.length,
           itemBuilder: (context, position) {
-            return provinceItems(items[position]);
+            return GestureDetector(
+              onTap: () {
+                saveValue(items[position]);
+                Navigator.popAndPushNamed(
+                    context, RouteConstanta.dashboardView);
+              },
+              child: provinceItems(items[position]),
+            );
           }),
     );
   }
