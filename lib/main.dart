@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_movie/src/routes/route.dart';
 import 'package:flutter_movie/src/views/dashboard/dashboard.dart';
 import 'package:flutter_movie/src/views/splash/splash.view.dart';
+import 'package:flutter_movie/src/views/widgets/location.theater.picker.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -21,7 +22,9 @@ class MyApp extends StatelessWidget {
       initialRoute: RouteConstanta.dashboardView,
       routes: {
         RouteConstanta.splashView: (context) => const SplashView(),
-        RouteConstanta.dashboardView: (context) => const DashboardView()
+        RouteConstanta.dashboardView: (context) => const DashboardView(),
+        RouteConstanta.locationTheaterPicker: (context) =>
+            const LocationTheaterPicker()
       },
     );
   }
