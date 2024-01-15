@@ -20,14 +20,21 @@ PreferredSizeWidget AppBarWithBackButton(
       onPressed: () {
         Navigator.popAndPushNamed(context, routeName);
       },
-      icon: Icon(
+      icon: const Icon(
         Icons.arrow_back, // Use the appropriate back arrow icon
         color: Colors.white,
       ),
     ),
     title: SizedBox(
-      height: 30.0,
-      child: Text(title),
-    ),
+        height: 30.0,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(color: Colors.white, fontSize: 18.0),
+            ),
+          ],
+        )),
   );
 }
