@@ -7,4 +7,5 @@ abstract class BaseColors {
   Color get darkBlue;
   Color get lightBlue;
   Color get lightGreen;
+  Color get nobel;
 }

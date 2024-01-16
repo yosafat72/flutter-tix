@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie/res/app_context_extension.dart';
 import 'package:flutter_movie/src/models/province.dart';
 import 'package:flutter_movie/src/routes/route.dart';
+import 'package:flutter_movie/src/service/response/status.dart';
 import 'package:flutter_movie/src/utils/shared.preferences.util.dart';
+import 'package:flutter_movie/src/viewmodels/home.viewmodel.dart';
 import 'package:flutter_movie/src/views/widgets/banner.promo.dart';
 import 'package:flutter_movie/src/views/widgets/now.playing.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -16,6 +19,8 @@ class HomeView extends StatefulWidget {
 }
 
 class HomeScreen extends State<HomeView> {
+  final HomeViewModel viewModel = HomeViewModel();
+
   var locationTheater = "";
   var locationTheaterId = "";
   int selectedBottomBarIndex = 0;
@@ -23,6 +28,7 @@ class HomeScreen extends State<HomeView> {
   @override
   void initState() {
     super.initState();
+    viewModel.fetchNowPlaying();
     getLocationTheater();
   }
 
@@ -44,25 +50,38 @@ class HomeScreen extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (BuildContext context, BoxConstraints viewportConstraints) {
-        return SingleChildScrollView(
-          child: ConstrainedBox(
-            constraints:
-                BoxConstraints(minHeight: viewportConstraints.maxHeight),
-            child: IntrinsicHeight(
-              child: Column(
-                children: [
-                  locationTheaterPicker(),
-                  const BannerPromo(),
-                  const NowPlayingWidget()
-                ],
-              ),
-            ),
-          ),
-        );
-      },
-    );
+    return ChangeNotifierProvider(
+        create: (context) => viewModel,
+        child: Consumer<HomeViewModel>(builder: ((context, value, child) {
+          return LayoutBuilder(
+            builder:
+                (BuildContext context, BoxConstraints viewportConstraints) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints:
+                      BoxConstraints(minHeight: viewportConstraints.maxHeight),
+                  child: IntrinsicHeight(
+                    child: Column(
+                      children: [
+                        locationTheaterPicker(),
+                        const BannerPromo(),
+                        if (viewModel.response.status == Status.loading)
+                          ...[]
+                        else if (viewModel.response.status ==
+                            Status.success) ...[
+                          NowPlayingWidget(
+                            movie: viewModel.response.data,
+                          )
+                        ] else if (viewModel.response.status == Status.error)
+                          ...[]
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        })));
   }
 
   Widget locationTheaterPicker() {

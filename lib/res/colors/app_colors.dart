@@ -21,4 +21,7 @@ class AppColors implements BaseColors {
 
   @override
   Color get lightGreen => HexColor("#90cea1");
+
+  @override
+  Color get nobel => HexColor("#9A9A9A");
 }
