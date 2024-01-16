@@ -136,7 +136,7 @@ class NowPlayingWidgetState extends State<NowPlayingWidget> {
                   Container(
                     margin: const EdgeInsets.only(top: 20.0),
                     child: Text(
-                      "${widget.movie?.results![currentIndex].originalTitle}",
+                      "${widget.movie?.results![currentIndex].title}",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 22.0,
