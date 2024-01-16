@@ -6,6 +6,7 @@ import 'package:flutter_movie/src/models/province.dart';
 import 'package:flutter_movie/src/routes/route.dart';
 import 'package:flutter_movie/src/utils/shared.preferences.util.dart';
 import 'package:flutter_movie/src/views/widgets/banner.promo.dart';
+import 'package:flutter_movie/src/views/widgets/now.playing.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -51,7 +52,11 @@ class HomeScreen extends State<HomeView> {
                 BoxConstraints(minHeight: viewportConstraints.maxHeight),
             child: IntrinsicHeight(
               child: Column(
-                children: [locationTheaterPicker(), const BannerPromo()],
+                children: [
+                  locationTheaterPicker(),
+                  const BannerPromo(),
+                  const NowPlayingWidget()
+                ],
               ),
             ),
           ),

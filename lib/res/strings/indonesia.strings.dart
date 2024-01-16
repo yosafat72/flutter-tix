@@ -6,4 +6,10 @@ class IndonesiaStrings extends Strings {
 
   @override
   String get locationTheaterPicker => "Lokasi Bioskop";
+
+  @override
+  String get sedangTayang => "Sedang Tayang";
+
+  @override
+  String get semua => "Semua";
 }
