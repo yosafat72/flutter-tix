@@ -104,14 +104,14 @@ class LocationTheaterPickerWidget extends State<LocationTheaterPicker> {
               if (data.id == argument['locationId']) ...[
                 Image.asset(
                   "lib/res/images/checked.png",
-                  width: 35.0,
-                  height: 35.0,
+                  width: 20.0,
+                  height: 20.0,
                 ),
               ] else ...[
                 Image.asset(
                   "lib/res/images/unchecked.png",
-                  width: 35.0,
-                  height: 35.0,
+                  width: 20.0,
+                  height: 20.0,
                 ),
               ]
             ],
