@@ -3,6 +3,7 @@ import 'package:flutter_movie/res/app_context_extension.dart';
 import 'package:flutter_movie/src/routes/route.dart';
 import 'package:flutter_movie/src/views/dashboard/now.playing.dart';
 import 'package:flutter_movie/src/views/widgets/appbar.with.back.button.dart';
+import 'package:flutter_movie/src/views/widgets/not.found.dart';
 
 class AllMovieView extends StatefulWidget {
   const AllMovieView({super.key});
@@ -28,7 +29,7 @@ class AllMovieScreen extends State<AllMovieView> {
               child: NowPlayingView(),
             ),
             Center(
-              child: Text("It's rainy here"),
+              child: NotFound(),
             ),
           ]),
         ));
