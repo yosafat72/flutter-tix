@@ -3,4 +3,5 @@ abstract class Strings {
   String get locationTheaterPicker;
   String get sedangTayang;
   String get semua;
+  String get filmBioskop;
 }

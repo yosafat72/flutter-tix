@@ -12,4 +12,7 @@ class IndonesiaStrings extends Strings {
 
   @override
   String get semua => "Semua";
+
+  @override
+  String get filmBioskop => "Film Bioskop";
 }

@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/res/app_context_extension.dart';
 import 'package:flutter_movie/src/models/movie.dart';
+import 'package:flutter_movie/src/routes/route.dart';
 
 class NowPlayingWidget extends StatefulWidget {
   final Movie? movie;
@@ -46,6 +47,11 @@ class NowPlayingWidgetState extends State<NowPlayingWidget> {
                         fontWeight: FontWeight.bold),
                   )),
                   Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(
+                          context, RouteConstanta.allMovie);
+                    },
                     child: Row(
                       children: [
                         Expanded(
@@ -70,7 +76,7 @@ class NowPlayingWidgetState extends State<NowPlayingWidget> {
                         )
                       ],
                     ),
-                  )
+                  ))
                 ],
               ),
             ),
@@ -139,7 +145,7 @@ class NowPlayingWidgetState extends State<NowPlayingWidget> {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(top: 5.0),
+                    margin: const EdgeInsets.only(top: 5.0, bottom: 10.0),
                     child: Text(
                       "${widget.movie?.results![currentIndex].overview}",
                       style: TextStyle(

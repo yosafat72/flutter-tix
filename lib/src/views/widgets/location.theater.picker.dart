@@ -26,7 +26,8 @@ class LocationTheaterPickerWidget extends State<LocationTheaterPicker> {
         appBar: AppBarWithBackButton(
             context,
             context.resources.strings.locationTheaterPicker,
-            RouteConstanta.dashboardView),
+            RouteConstanta.dashboardView,
+            false),
         body: observeProvince());
   }
 

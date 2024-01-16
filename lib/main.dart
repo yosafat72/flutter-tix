@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_movie/src/routes/route.dart';
+import 'package:flutter_movie/src/views/dashboard/all.movie.dart';
 import 'package:flutter_movie/src/views/dashboard/dashboard.dart';
 import 'package:flutter_movie/src/views/splash/splash.view.dart';
 import 'package:flutter_movie/src/views/widgets/location.theater.picker.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
         RouteConstanta.splashView: (context) => const SplashView(),
         RouteConstanta.dashboardView: (context) => const DashboardView(),
         RouteConstanta.locationTheaterPicker: (context) =>
-            const LocationTheaterPicker()
+            const LocationTheaterPicker(),
+        RouteConstanta.allMovie: (context) => const AllMovieView()
       },
     );
   }
