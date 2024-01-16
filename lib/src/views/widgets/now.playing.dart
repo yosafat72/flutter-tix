@@ -1,11 +1,9 @@
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/res/app_context_extension.dart';
 import 'package:flutter_movie/src/models/movie.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 class NowPlayingWidget extends StatefulWidget {
   final Movie? movie;
@@ -16,14 +14,6 @@ class NowPlayingWidget extends StatefulWidget {
 }
 
 class NowPlayingWidgetState extends State<NowPlayingWidget> {
-  var items = [
-    "lib/res/images/movie_satu.jpeg",
-    "lib/res/images/movie_dua.jpeg",
-    "lib/res/images/movie_tiga.jpeg",
-    "lib/res/images/movie_empat.jpeg",
-    "lib/res/images/movie_lima.jpeg",
-  ];
-
   int currentIndex = 0;
 
   Color generateRandomColor() {
@@ -43,35 +33,58 @@ class NowPlayingWidgetState extends State<NowPlayingWidget> {
         width: MediaQuery.of(context).size.width,
         child: Column(
           children: [
-            Row(
-              children: [
-                Expanded(
-                    child: Text(
-                  context.resources.strings.sedangTayang,
-                  style: TextStyle(
-                      color: context.resources.color.primaryColor,
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.bold),
-                )),
-                Expanded(
-                  child: Align(
-                      alignment: Alignment.centerRight,
+            Container(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Row(
+                children: [
+                  Expanded(
                       child: Text(
-                        context.resources.strings.semua,
-                        style: TextStyle(
-                            color: context.resources.color.primaryColor,
-                            fontSize: 12.0,
-                            fontWeight: FontWeight.normal),
-                      )),
-                )
-              ],
+                    context.resources.strings.sedangTayang,
+                    style: TextStyle(
+                        color: context.resources.color.primaryColor,
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.bold),
+                  )),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              context.resources.strings.semua,
+                              style: TextStyle(
+                                  color: context.resources.color.primaryColor,
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.normal),
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
+                        ),
+                        const Align(
+                          alignment: Alignment.centerRight,
+                          child: Icon(
+                            Icons.arrow_circle_right_rounded,
+                            size: 18,
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.white, Colors.white, generateRandomColor()],
+                  colors: [
+                    Colors.white,
+                    Colors.white,
+                    Colors.white,
+                    generateRandomColor()
+                  ],
                   tileMode: TileMode.mirror,
                 ),
               ),
