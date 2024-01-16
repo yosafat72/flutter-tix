@@ -16,6 +16,7 @@ class HomeView extends StatefulWidget {
 
 class HomeScreen extends State<HomeView> {
   var locationTheater = "";
+  var locationTheaterId = "";
   int selectedBottomBarIndex = 0;
 
   @override
@@ -32,8 +33,10 @@ class HomeScreen extends State<HomeView> {
       final newLocation = ProvinceData.fromJson(jsonData);
       if (newLocation.name == "") {
         locationTheater = 'JAWA BARAT';
+        locationTheaterId = "";
       } else {
         locationTheater = newLocation.name ?? "";
+        locationTheaterId = newLocation.id ?? "";
       }
     });
   }
@@ -61,7 +64,8 @@ class HomeScreen extends State<HomeView> {
     return GestureDetector(
       onTap: () {
         Navigator.pushReplacementNamed(
-            context, RouteConstanta.locationTheaterPicker);
+            context, RouteConstanta.locationTheaterPicker,
+            arguments: {'locationId': locationTheaterId});
       },
       child: DecoratedBox(
         decoration: const BoxDecoration(color: Colors.black12),

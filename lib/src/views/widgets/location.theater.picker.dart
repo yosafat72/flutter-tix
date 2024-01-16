@@ -79,6 +79,9 @@ class LocationTheaterPickerWidget extends State<LocationTheaterPicker> {
   }
 
   Widget provinceItems(ProvinceData data) {
+    final argument = ModalRoute.of(context)!.settings.arguments as Map;
+    print('Location id yang di terima ' + argument['locationId']);
+
     return Card(
         child: Padding(
       padding: const EdgeInsets.all(16.0),
@@ -98,7 +101,7 @@ class LocationTheaterPickerWidget extends State<LocationTheaterPicker> {
           )),
           Wrap(
             children: [
-              if (data.id == "32") ...[
+              if (data.id == argument['locationId']) ...[
                 Image.asset(
                   "lib/res/images/checked.png",
                   width: 35.0,
